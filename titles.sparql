@@ -1,0 +1,8 @@
+PREFIX dblp: <https://dblp.org/rdf/schema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX cito: <http://purl.org/spar/cito/>
+SELECT ?this_publ ?title WHERE {
+  ?this_publ dblp:publishedIn ?this_venue .
+  FILTER (?this_venue in ("PLDI", "ICFP", "OOPSLA", "POPL", "Proc. ACM Program. Lang."))
+  ?this_publ dblp:title ?title
+}
