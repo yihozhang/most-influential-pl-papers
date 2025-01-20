@@ -1,7 +1,7 @@
 import pandas as pds
 
 papers = pds.read_csv("paper_rankings.csv")
-papers['paper'] = papers['title'] + "\n" + papers['authors']
+papers['paper'] = "**" + papers['title'] + "** " + papers['authors']
 print("## Most influential papers of all time")
 print()
 print(papers[['rank', 'paper', 'year', 'score']][0:30].to_markdown(index=False))
