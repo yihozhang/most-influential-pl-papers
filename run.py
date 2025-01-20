@@ -50,7 +50,7 @@ pr_list= list(pr.items())
 pr_list.sort(key=lambda x: x[1], reverse=True)
 paper_rankings = pd.DataFrame(map(lambda x: (pubs[x[0]], titles[pubs[x[0]]], x[1]), pr_list), columns=["id", "title", "score"])
 paper_rankings["rank"] = paper_rankings["score"].rank(ascending=False)
-
+paper_rankings["authors"] = paper_rankings["id"].map(lambda x: (", ".join(list(map(lambda y: names[y], authors[x]))) + ".") if len(authors[x]) <= 4 else (", ".join(list(map(lambda y: names[y], authors[x]))[:4]) + ", et al."))
 
 paper_rankings["year"] = paper_rankings["id"].map(lambda x: years[x])
 paper_rankings.to_csv("paper_rankings.csv", index=False)
